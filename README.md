@@ -7,6 +7,14 @@ Website link: http://meds-buddy-app.netlify.app
 ![Untitled design](https://github.com/user-attachments/assets/08224c2e-f4e1-4812-a83c-8cac06aeae20)
 
 
+## Authentication Failed View
+
+![Bildschirmfoto 2025-06-22 um 10 57 45](https://github.com/user-attachments/assets/3dd8d5f3-621b-4ca8-9311-45232cfbe0d1)
+![Bildschirmfoto 2025-06-22 um 10 59 35](https://github.com/user-attachments/assets/867a31aa-734c-4ac8-a4ed-3e7e148c9bc4)
+
+
+
+
 ## 🚀 Features
 
 

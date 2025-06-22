@@ -2,35 +2,27 @@
 
 A full-stack Medication Management App that helps patients track daily medication and monitor adherence in real time.
 
+
+Built with:
+
+- **React + TypeScript + TailwindCSS**
+- **Supabase (Auth, Realtime, Storage, Database)**
+
 Website link: http://meds-buddy-app.netlify.app
 
 ![Untitled design](https://github.com/user-attachments/assets/08224c2e-f4e1-4812-a83c-8cac06aeae20)
-
-
-## Authentication Failed View
-
-![Bildschirmfoto 2025-06-22 um 10 57 45](https://github.com/user-attachments/assets/3dd8d5f3-621b-4ca8-9311-45232cfbe0d1)
-![Bildschirmfoto 2025-06-22 um 10 59 35](https://github.com/user-attachments/assets/867a31aa-734c-4ac8-a4ed-3e7e148c9bc4)
-
-
+![Bildschirmfoto 2025-06-22 um 11 02 22](https://github.com/user-attachments/assets/d0054b0b-a8cc-4705-9ecf-1ad56d5991fe)
 
 
 ## 🚀 Features
 
-
-
-
 ### 🧑‍⚕️ Patient Dashboard
 
-- View today's medication status
-- Mark medication as taken (with optional photo proof)
-- Track streaks, monthly adherence rate, and calendar view
-- Real-time updates using Supabase
-
-
-
-
-
+- Secure **login/signup** using Supabase Auth
+- Add, edit, and delete **medications**
+- Mark medications as **taken** with optional photo proof
+- View **adherence stats**, streaks, and calendar
+- Upload and view **proof images**
 
 ### 📦 Tech Stack
 

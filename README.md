@@ -4,13 +4,11 @@ A full-stack Medication Management App that helps patients track daily medicatio
 
 Website link: http://meds-buddy-app.netlify.app
 
-![Untitled design](https://github.com/user-attachments/assets/33ad2b2c-0011-4dd2-87fa-80b10ed61840)
-
-
-
+![Untitled design](https://github.com/user-attachments/assets/08224c2e-f4e1-4812-a83c-8cac06aeae20)
 
 
 ## 🚀 Features
+
 
 
 

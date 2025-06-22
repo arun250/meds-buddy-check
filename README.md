@@ -11,7 +11,7 @@ Built with:
 Website link: http://meds-buddy-app.netlify.app
 
 ![Untitled design](https://github.com/user-attachments/assets/08224c2e-f4e1-4812-a83c-8cac06aeae20)
-![Bildschirmfoto 2025-06-22 um 11 02 22](https://github.com/user-attachments/assets/d0054b0b-a8cc-4705-9ecf-1ad56d5991fe)
+
 
 
 ## 🚀 Features

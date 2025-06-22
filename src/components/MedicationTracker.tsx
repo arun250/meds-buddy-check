@@ -1,27 +1,54 @@
-
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Check, Image, Camera, Clock } from "lucide-react";
 import { format } from "date-fns";
 
+import { supabase } from "../supabase";
+
+import Medications from "./Medications";
+
 interface MedicationTrackerProps {
   date: string;
   isTaken: boolean;
   onMarkTaken: (date: string, imageFile?: File) => void;
   isToday: boolean;
+  medicationId: string;
+  userId: string;
 }
 
-const MedicationTracker = ({ date, isTaken, onMarkTaken, isToday }: MedicationTrackerProps) => {
+const MedicationTracker = ({ date, onMarkTaken, isToday, medicationId, userId, isTaken }: MedicationTrackerProps) => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [dateTakenList, setDateTakenList] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchDates = async () => {
+      if (!medicationId) return;
+
+      const { data, error } = await supabase
+        .from("medication_log")
+        .select("date_taken")
+        .eq("user_id", userId)
+        .eq("medication_id", medicationId);
+
+      if (error) {
+        console.error("Failed to fetch dates:", error.message);
+        return;
+      }
+
+      setDateTakenList(data?.map((entry) => entry.date_taken) || []);
+    };
+
+    fetchDates();
+  }, [medicationId, userId]);
 
   const dailyMedication = {
     name: "Daily Medication Set",
     time: "8:00 AM",
-    description: "Complete set of daily tablets"
+    description: "Complete set of daily tablets",
   };
 
   const handleImageSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,11 +63,63 @@ const MedicationTracker = ({ date, isTaken, onMarkTaken, isToday }: MedicationTr
     }
   };
 
-  const handleMarkTaken = () => {
-    onMarkTaken(date, selectedImage || undefined);
+  const handleMarkTaken = async () => {
+    if (!isToday || !medicationId) return;
+
+    const today = new Date().toISOString().split("T")[0];
+
+    if (dateTakenList.includes(today)) {
+      console.log("Already marked as taken today");
+      return;
+    }
+
+    // Image Upload
+    let imageUrl = "";
+    if (selectedImage) {
+      const fileName = `private/${medicationId}-${today}.jpg`;
+
+
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from("medication-images")
+        .upload(fileName, selectedImage, {
+          cacheControl: "3600",
+          upsert: true,
+        });
+
+      if (uploadError) {
+        console.error("Image upload failed:", uploadError.message);
+      } else {
+        const { data: publicUrlData } = supabase.storage
+          .from("medication-images")
+          .getPublicUrl(fileName);
+
+        imageUrl = publicUrlData?.publicUrl || "";
+      }
+    }
+
+    // Insert log into medication_log
+    const { error: insertError } = await supabase.from("medication_log").insert([
+      {
+        user_id: userId,
+        medication_id: medicationId,
+        date_taken: today,
+        
+      },
+    ]);
+
+    if (insertError) {
+      console.error("Failed to insert log:", insertError.message);
+      return;
+    }
+
+    setDateTakenList((prev) => [...prev, today]);
     setSelectedImage(null);
     setImagePreview(null);
+    console.log("Marked as taken successfully");
+    onMarkTaken(today, selectedImage || undefined);
   };
+
+  isTaken = dateTakenList.includes(date);
 
   if (isTaken) {
     return (
@@ -50,15 +129,13 @@ const MedicationTracker = ({ date, isTaken, onMarkTaken, isToday }: MedicationTr
             <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
               <Check className="w-8 h-8 text-white" />
             </div>
-            <h3 className="text-xl font-semibold text-green-800 mb-2">
-              Medication Completed!
-            </h3>
+            <h3 className="text-xl font-semibold text-green-800 mb-2">Medication Completed!</h3>
             <p className="text-green-600">
-              Great job! You've taken your medication for {format(new Date(date), 'MMMM d, yyyy')}.
+              Great job! You've taken your medication for {format(new Date(date), "MMMM d, yyyy")}.
             </p>
           </div>
         </div>
-        
+
         <Card className="border-green-200 bg-green-50/50">
           <CardContent className="flex items-center justify-between p-4">
             <div className="flex items-center gap-3">
@@ -100,7 +177,13 @@ const MedicationTracker = ({ date, isTaken, onMarkTaken, isToday }: MedicationTr
         </CardContent>
       </Card>
 
-      {/* Image Upload Section */}
+      <Card className="flex flex-col justify-center hover:shadow-md transition-shadow">
+        <CardContent className="flex flex-col justify-between p-4">
+          <h4 className="font-medium mb-2">Add Medication</h4>
+          <Medications />
+        </CardContent>
+      </Card>
+
       <Card className="border-dashed border-2 border-border/50">
         <CardContent className="p-6">
           <div className="text-center">
@@ -109,7 +192,7 @@ const MedicationTracker = ({ date, isTaken, onMarkTaken, isToday }: MedicationTr
             <p className="text-sm text-muted-foreground mb-4">
               Take a photo of your medication or pill organizer as confirmation
             </p>
-            
+
             <input
               type="file"
               accept="image/*"
@@ -117,7 +200,7 @@ const MedicationTracker = ({ date, isTaken, onMarkTaken, isToday }: MedicationTr
               ref={fileInputRef}
               className="hidden"
             />
-            
+
             <Button
               variant="outline"
               onClick={() => fileInputRef.current?.click()}
@@ -126,7 +209,7 @@ const MedicationTracker = ({ date, isTaken, onMarkTaken, isToday }: MedicationTr
               <Camera className="w-4 h-4 mr-2" />
               {selectedImage ? "Change Photo" : "Take Photo"}
             </Button>
-            
+
             {imagePreview && (
               <div className="mt-4">
                 <img
@@ -143,7 +226,6 @@ const MedicationTracker = ({ date, isTaken, onMarkTaken, isToday }: MedicationTr
         </CardContent>
       </Card>
 
-      {/* Mark as Taken Button */}
       <Button
         onClick={handleMarkTaken}
         className="w-full py-4 text-lg bg-green-600 hover:bg-green-700 text-white"

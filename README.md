@@ -1,77 +1,39 @@
-# MediCare App - 4-6 Hour Assessment
+# 💊 Medication Manager
 
-## Live Demo (UI only): https://meds-buddy-check.lovable.app/
+A full-stack Medication Management App that helps patients track daily medication and allows caretakers to monitor adherence in real time.
 
-## Current State of the codebase
+## 🚀 Features
 
-This is a React medication management app with dual user roles (patients/caretakers). Currently features:
+### 🧑‍⚕️ Patient Dashboard
 
-- Role-based dashboard system for each user account with runtime switching (for simplcity)
+- View today's medication status
+- Mark medication as taken (with optional photo proof)
+- Track streaks, monthly adherence rate, and calendar view
+- Real-time updates using Supabase
 
-- UI for medication tracking with calendar visualization
+### 👨‍👩‍⚕️ Caretaker Dashboard
 
-- Mock data for streaks, adherence rates, and medication logs
+- Monitor patient adherence live
+- See missed doses, streaks, and activity history
+- Visual calendar overview of medication history
+- Quick actions: send reminders, configure notifications
 
-- Photo upload interface for medication proof
+### 📦 Tech Stack
 
-- Notification settings UI (non-functional)
+- **Frontend**: React + TypeScript + Tailwind CSS
+- **Backend**: Supabase (Database, Auth, Storage, Realtime)
+- **Testing**: Vitest + Testing Library
+- **Auth**: Supabase Auth (email/password)
+- **Storage**: Supabase bucket for image uploads
+- **Realtime**: Supabase Realtime Channels for updates
 
-- All data is stored in local state (no persistence)
+---
 
+## ⚙️ Setup Instructions
 
-## Core Implementation Tasks
+### 1. Clone the Repo
 
-### Phase 1 (Required - 4 hours):
-- Supabase authentication setup
-- Basic CRUD for adding medications
-- Basic CRUD for marking medication taken for the day
-- Connect one dashboard to real data
-
-### Phase 2 (Optional - 2 hours):
-- Caretaker-patient real time updates
-- Basic adherence tracking
-
-### Phase 3 (Bonus):
-- File uploads
-
-**Provided:**
-- UI components and styles
-
-## Required Features:
-1. User login/signup with Supabase Auth
-2. Add medications (name, dosage, frequency)
-3. View medication list
-4. Mark medication as taken today
-5. Simple adherence percentage display
-
-## Technical Requirements:
-- Use provided React + TypeScript template
-- Integrate Supabase for auth and database
-- Use React Query for data fetching
-- Implement error handling
-- Clean, readable code
-
-## Other Requirements:
-- Use Git with meaningful commits
-- Implement proper form validation
-- Handle loading and error states consistently
-- Write at least 2-3 meaningful tests using vitest
-- Include a README with setup instructions
-
-## Technical Challenges:
-
-**Include:**
-- Optimistic updates using react query
-- Proper TypeScript generics usage
-
-## Deployment Bonus:
-Deploy to Vercel/Netlify
-
-## We will evaluate:
-- Code organization and architecture decisions
-- Error handling and edge cases
-- TypeScript usage (proper typing, no `any`)
-- Component composition and reusability
-- State management approach
-- Performance considerations (unnecessary re-renders)
-- Security awareness (input sanitization)
+```bash
+git clone https://github.com/your-username/medication-manager.git
+cd medication-manager
+```

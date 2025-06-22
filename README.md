@@ -11,13 +11,6 @@ A full-stack Medication Management App that helps patients track daily medicatio
 - Track streaks, monthly adherence rate, and calendar view
 - Real-time updates using Supabase
 
-### 👨‍👩‍⚕️ Caretaker Dashboard
-
-- Monitor patient adherence live
-- See missed doses, streaks, and activity history
-- Visual calendar overview of medication history
-- Quick actions: send reminders, configure notifications
-
 ### 📦 Tech Stack
 
 - **Frontend**: React + TypeScript + Tailwind CSS

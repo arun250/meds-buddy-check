@@ -2,11 +2,17 @@
 
 A full-stack Medication Management App that helps patients track daily medication and monitor adherence in real time.
 
-website-Link : http://meds-buddy-app.netlify.app
+Website link: http://meds-buddy-app.netlify.app
+
+![Untitled design](https://github.com/user-attachments/assets/33ad2b2c-0011-4dd2-87fa-80b10ed61840)
+
+
 
 
 
 ## 🚀 Features
+
+
 
 ### 🧑‍⚕️ Patient Dashboard
 
@@ -15,7 +21,7 @@ website-Link : http://meds-buddy-app.netlify.app
 - Track streaks, monthly adherence rate, and calendar view
 - Real-time updates using Supabase
 
-  ![Bildschirmfoto 2025-06-19 um 18 29 54](https://github.com/user-attachments/assets/4a16604c-edaf-4dd8-8ea2-aff2397cc37f)
+
 
 
 

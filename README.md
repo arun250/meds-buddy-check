@@ -6,9 +6,6 @@ website-Link : http://meds-buddy-app.netlify.app
 
 
 
-
-
-
 ## 🚀 Features
 
 ### 🧑‍⚕️ Patient Dashboard
@@ -17,6 +14,11 @@ website-Link : http://meds-buddy-app.netlify.app
 - Mark medication as taken (with optional photo proof)
 - Track streaks, monthly adherence rate, and calendar view
 - Real-time updates using Supabase
+
+  ![Bildschirmfoto 2025-06-19 um 18 29 54](https://github.com/user-attachments/assets/4a16604c-edaf-4dd8-8ea2-aff2397cc37f)
+
+
+
 
 ### 📦 Tech Stack
 

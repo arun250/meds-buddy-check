@@ -2,7 +2,7 @@
 
 A full-stack Medication Management App that helps patients track daily medication and monitor adherence in real time.
 
-website-Link : meds-buddy-app.netlify.app
+website-Link : http://meds-buddy-app.netlify.app
 
 
 

@@ -1,6 +1,6 @@
 # 💊 Medication Manager
 
-A full-stack Medication Management App that helps patients track daily medication and allows caretakers to monitor adherence in real time.
+A full-stack Medication Management App that helps patients track daily medication and monitor adherence in real time.
 
 ## 🚀 Features
 
